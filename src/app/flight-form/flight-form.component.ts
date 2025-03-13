@@ -11,6 +11,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
+// Define the interface
+interface FlightInfoPayload {
+  airline: string;
+  arrivalDate: string;
+  arrivalTime: string;
+  flightNumber: string;
+  numOfGuests: number;
+  comments?: string;
+}
+
 @Component({
   selector: 'app-flight-form',
   imports: [CommonModule, ReactiveFormsModule, ConfirmDialogComponent],
@@ -52,24 +62,32 @@ export class FlightFormComponent {
         candidate: await this.authService.getUserName(),
       });
 
-      this.http
-        .post(this.apiUrl, this.flightForm.value, { headers })
-        .subscribe({
-          next: (response) => {
-            console.log('Response:', response);
-            this.message = 'Flight information submitted successfully!';
-          },
-          error: (error) => {
-            console.error('Error:', error);
-            this.message =
-              'Error submitting flight information: ' +
-              (error.error?.message || error.message);
-          },
-          complete: () => {
-            console.log('Request completed.');
-            this.loading = false; // Stop loading only after the request completes
-          },
-        });
+      // Create the payload using the FlightInfoPayload interface
+      const flightInfoPayload: FlightInfoPayload = {
+        airline: this.flightForm.value.airline,
+        arrivalDate: this.flightForm.value.arrivalDate,
+        arrivalTime: this.flightForm.value.arrivalTime,
+        flightNumber: this.flightForm.value.flightNumber,
+        numOfGuests: this.flightForm.value.numOfGuests,
+        comments: this.flightForm.value.comments || '', // Optional, so we handle undefined or null
+      };
+
+      this.http.post(this.apiUrl, flightInfoPayload, { headers }).subscribe({
+        next: (response) => {
+          console.log('Response:', response);
+          this.message = 'Flight information submitted successfully!';
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          this.message =
+            'Error submitting flight information: ' +
+            (error.error?.message || error.message);
+        },
+        complete: () => {
+          console.log('Request completed.');
+          this.loading = false; // Stop loading only after the request completes
+        },
+      });
     } else {
       this.message = 'Please fill all required fields!';
     }
