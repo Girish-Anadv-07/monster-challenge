@@ -44,7 +44,9 @@ export class LoginComponent {
       'This phone number is already linked to another account.',
     'auth/uid-already-exists':
       'This user ID is already taken. Try a different one.',
-    'auth/weak-password': 'The password is too weak.',
+    'auth/weak-password':
+      'The password is too weak. Password must be at least six characters long.',
+    'auth/invalid-credential': 'Invalid Login Credentials',
   };
   constructor(private authService: AuthService, private router: Router) {}
 
