@@ -1,0 +1,44 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Poppins,
+      density: 0,
+    )
+  );
+}
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.autocomplete-overrides(
+    (
+      background-color: white,
+    )
+  );
+  @include mat.datepicker-overrides(
+    (
+      calendar-date-selected-state-background-color: #ff833e,
+      calendar-container-background-color: white,
+      calendar-date-preview-state-outline-color: red,
+    )
+  );
+  @include mat.form-field-overrides(
+    (
+      filled-with-label-container-padding-top: 0px,
+      outlined-disabled-outline-color: #cccccc,
+    )
+  );
+  @include mat.timepicker-overrides(
+    (
+      container-background-color: white,
+    )
+  );
+}

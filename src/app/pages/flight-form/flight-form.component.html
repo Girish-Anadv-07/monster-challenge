@@ -1,0 +1,249 @@
+<header class="header__container">
+  <div class="header__image">
+    <div class="header__image__card header__image__card-1">
+      <span><i class="ri-calendar-schedule-line"></i></span>
+      Plan
+    </div>
+    <div class="header__image__card header__image__card-3">
+      <span><i class="ri-calendar-check-line"></i></span>
+      Book
+    </div>
+    <div class="header__image__card header__image__card-4">
+      <span><i class="ri-send-plane-fill"></i></span>
+      Submit
+    </div>
+    <div class="header__image__card header__image__card-2">
+      <span><i class="ri-flight-takeoff-fill"></i></span>
+      Travel
+    </div>
+    <div class="header__image__card header__image__card-5">
+      <span><i class="ri-treasure-map-line"></i></span>
+      Enjoy
+    </div>
+    <img src="plane.png" alt="header" />
+  </div>
+
+  <div class="form-container">
+    <h2>Flight Details</h2>
+    <form [formGroup]="flightForm" (ngSubmit)="submitForm()">
+      <div class="form-row padding_bottom">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Airline</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="airline"
+              [matAutocomplete]="autoAirline"
+              placeholder="Search Airline"
+              (blur)="onAirlineBlur()"
+              required
+            />
+            <mat-autocomplete #autoAirline="matAutocomplete">
+              <mat-option
+                *ngFor="let airline of filteredAirlines$ | async"
+                [value]="airline"
+              >
+                {{ airline }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error
+              *ngIf="
+                flightForm.get('airline')?.touched &&
+                flightForm.get('airline')?.invalid
+              "
+            >
+              <span *ngIf="flightForm.get('airline')?.hasError('required')">
+                Required Field
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Flight Number Dropdown -->
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Flight Number</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="flightNumber"
+              [matAutocomplete]="autoFlight"
+              placeholder="Search Flight Number"
+              (blur)="onFlightNumberBlur()"
+              required
+            />
+            <mat-autocomplete #autoFlight="matAutocomplete">
+              <mat-option
+                *ngFor="let flight of filteredFlights$ | async"
+                [value]="flight"
+              >
+                {{ flight }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error
+              *ngIf="
+                flightForm.get('flightNumber')?.touched &&
+                flightForm.get('flightNumber')?.invalid
+              "
+            >
+              <span
+                *ngIf="flightForm.get('flightNumber')?.hasError('required')"
+              >
+                Required Field
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-group full-width padding_bottom">
+        <mat-form-field appearance="outline">
+          <mat-label>Arrival Timezone</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="timezone"
+            [matAutocomplete]="autoTimezone"
+            placeholder="Search Timezone"
+            (blur)="onTimezoneBlur()"
+            required
+          />
+          <mat-autocomplete #autoTimezone="matAutocomplete">
+            <mat-option
+              *ngFor="let tz of filteredTimezones$ | async"
+              [value]="tz.name"
+              (click)="handleTimezoneChange(tz)"
+            >
+              <span
+                >{{ tz.name }}
+                &nbsp; -- &nbsp;
+                {{ tz.time }}</span
+              >
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error
+            *ngIf="
+              flightForm.get('timezone')?.touched &&
+              flightForm.get('timezone')?.invalid
+            "
+          >
+            <span *ngIf="flightForm.get('timezone')?.hasError('required')">
+              Required Field
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row padding_bottom">
+        <mat-form-field class="grow1" appearance="outline">
+          <mat-label>Arrival Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="arrivalDate"
+            [min]="minDate"
+            required
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              flightForm.get('arrivalDate')?.touched &&
+              flightForm.get('arrivalDate')?.invalid
+            "
+          >
+            <span *ngIf="flightForm.get('arrivalDate')?.hasError('required')">
+              Invalid Date
+            </span>
+            <span *ngIf="flightForm.get('arrivalDate')?.hasError('futureDate')">
+              Can't be past
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="grow2" appearance="outline">
+          <mat-label>Arrival Time</mat-label>
+          <input
+            matInput
+            [matTimepicker]="timepicker"
+            formControlName="arrivalTime"
+            id="arrivalTime"
+            required
+          />
+          <mat-timepicker-toggle matIconSuffix [for]="timepicker" />
+          <mat-timepicker #timepicker />
+          <mat-error
+            *ngIf="
+              flightForm.get('arrivalTime')?.touched &&
+              flightForm.get('arrivalTime')?.invalid
+            "
+          >
+            <span *ngIf="flightForm.get('arrivalTime')?.hasError('required')">
+              Required Field
+            </span>
+            <span
+              *ngIf="flightForm.get('arrivalTime')?.hasError('invalidTime')"
+            >
+              Invalid Time
+            </span>
+            <span *ngIf="flightForm.get('arrivalTime')?.hasError('futureTime')">
+              Can't be past
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="grow3" appearance="outline">
+          <mat-label class="shrink"># Guests</mat-label>
+          <input
+            matInput
+            id="no-of-guests"
+            type="number"
+            formControlName="numOfGuests"
+            min="1"
+            required
+          />
+          <mat-error
+            *ngIf="
+              flightForm.get('numOfGuests')?.invalid &&
+              flightForm.get('numOfGuests')?.touched
+            "
+          >
+            Range 1 to 855
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Comments (Optional)</mat-label>
+            <textarea
+              matInput
+              id="comments"
+              formControlName="comments"
+              placeholder="Additional comments"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button
+        id="submit"
+        type="submit"
+        [disabled]="flightForm.invalid || loading"
+      >
+        <span *ngIf="!loading">Submit</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+    </form>
+  </div>
+</header>

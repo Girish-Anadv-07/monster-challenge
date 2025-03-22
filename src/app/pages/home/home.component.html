@@ -1,0 +1,489 @@
+<header class="header__container" id="home">
+  <div class="header__image" *ngIf="!showLogin || isLoggedIn">
+    <div class="header__image__card header__image__card-1">
+      <span><i class="ri-mic-line"></i></span>
+      Concerts
+    </div>
+    <div class="header__image__card header__image__card-4">
+      <span><i class="ri-ancient-gate-line"></i></span>
+      Historical & Museum Tour
+    </div>
+    <div class="header__image__card header__image__card-5">
+      <span><i class="ri-treasure-map-line"></i></span>
+      Adventure tourism
+    </div>
+    <div class="header__image__card header__image__card-3">
+      <span><i class="ri-map-2-line"></i></span>
+      Vacation Packages
+    </div>
+    <div class="header__image__card header__image__card-2">
+      <span><i class="ri-guide-line"></i></span>
+      Road Trips
+    </div>
+
+    <img src="header.png" alt="header" />
+  </div>
+  <div class="header__content">
+    <h1>READY TO GO?<br />THE <span>ADVENTURE</span> IS WAITING FOR YOU</h1>
+    <p>
+      MonsterTravel turns trips into epic adventures! From ancient wonders to
+      wild concerts, dreamy vacations to ultimate road trips—we plan it all.
+      Your next journey? A story in the making!
+    </p>
+  </div>
+  <!-- Show LoginComponent when showLogin is true -->
+  <app-login *ngIf="showLogin && !isLoggedIn"></app-login>
+</header>
+
+<section class="steps" id="plan">
+  <div class="section__container steps__container">
+    <h2 class="section__header">
+      Plan Your Dream Vacation in 4 <span>Simple Steps</span>
+    </h2>
+    <p class="section__description">
+      Follow our easy step-by-step guide to book your perfect getaway and enjoy
+      a hassle-free travel experience.
+    </p>
+    <div class="steps__grid">
+      <div class="steps__card">
+        <span><i class="ri-user-fill"></i></span>
+        <h4>Create an Account</h4>
+        <p>
+          Sign up in just a few clicks to access exclusive vacation packages,
+          discounts, and personalized travel recommendations. It's quick, easy,
+          and free!
+        </p>
+      </div>
+      <div class="steps__card">
+        <span><i class="ri-search-fill"></i></span>
+        <h4>Choose a Vacation Plan</h4>
+        <p>
+          Browse through our curated vacation plans, from relaxing beach
+          getaways to thrilling adventure trips. Select the package that best
+          fits your preferences and budget.
+        </p>
+      </div>
+      <div class="steps__card">
+        <span><i class="ri-file-paper-fill"></i></span>
+        <h4>Provide Flight Details</h4>
+        <p>
+          Enter your flight information to ensure smooth coordination. Whether
+          you book through us or an external airline, we’ll keep everything
+          aligned for a seamless experience.
+        </p>
+      </div>
+      <div class="steps__card">
+        <span><i class="ri-map-pin-line"></i></span>
+        <h4>Enjoy Your Vacation</h4>
+        <p>
+          Sit back and relax! We’ll arrange airport pickups and take care of all
+          the details, ensuring you have a stress-free and enjoyable vacation
+          from start to finish.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section__container explore__container" id="services">
+  <h2 class="section__header">
+    <span>Endless Vacation</span> Options Await You
+  </h2>
+  <p class="section__description">
+    Discover a world of breathtaking destinations and unforgettable experiences.
+    Find the perfect vacation that suits your style and preferences.
+  </p>
+  <div class="explore__grid">
+    <div class="explore__card">
+      <span><i class="fa-solid fa-umbrella-beach"></i></span>
+      <h4>Beach Getaways</h4>
+      <p>
+        Relax on pristine beaches with crystal-clear waters and stunning
+        sunsets.
+      </p>
+    </div>
+    <div class="explore__card">
+      <span><i class="fa-solid fa-car-side"></i></span>
+      <h4>Adventure Trips</h4>
+      <p>
+        Thrill-seekers rejoice! Explore mountains, jungles, and extreme sports
+        destinations.
+      </p>
+    </div>
+    <div class="explore__card">
+      <span><i class="fa-solid fa-heart"></i></span>
+      <h4>Honeymoon Escapes</h4>
+      <p>
+        Romantic getaways to dreamy destinations for an unforgettable
+        experience.
+      </p>
+    </div>
+    <div class="explore__card">
+      <span><i class="fa-solid fa-gopuram"></i></span>
+      <h4>Cultural Tours</h4>
+      <p>
+        Immerse yourself in rich history, local traditions, and fascinating
+        landmarks.
+      </p>
+    </div>
+    <div class="explore__card">
+      <span><i class="fa-solid fa-people-group"></i></span>
+      <h4>Family Vacations</h4>
+      <p>
+        Fun-filled trips designed for families with exciting activities for all
+        ages.
+      </p>
+    </div>
+    <div class="explore__card">
+      <span><i class="fa-solid fa-ship"></i></span>
+      <h4>Cruise Packages</h4>
+      <p>
+        Sail across beautiful oceans with all-inclusive luxury and breathtaking
+        views.
+      </p>
+    </div>
+
+    <div class="explore__card">
+      <span><i class="fa-solid fa-motorcycle"></i></span>
+      <h4>Road Trips</h4>
+      <p>
+        Hit the open road and explore scenic highways, hidden gems, and charming
+        towns.
+      </p>
+    </div>
+    <div class="explore__card">
+      <span><i class="ri-mic-line"></i></span>
+      <h4>Concert & Festival Tours</h4>
+      <p>
+        Experience live music, electrifying performances, and world-famous
+        festivals.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section__container offer__container" id="packages">
+  <h2 class="section__header">Our Exclusive <span>Vacation Packages</span></h2>
+  <p class="section__description">
+    Explore our handpicked vacation packages designed for every type of
+    traveler. Whether you're looking for adventure, relaxation, or cultural
+    experiences, we have the perfect getaway for you!
+  </p>
+  <div class="offer__grid">
+    <div class="offer__card">
+      <img src="plan-1.png" alt="offer" />
+      <div class="offer__details">
+        <span>01</span>
+        <div>
+          <h4>Maldives Paradise Retreat</h4>
+          <p>
+            Escape to crystal-clear waters, white sandy beaches, and luxurious
+            overwater bungalows. Perfect for honeymoons and relaxing getaways.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="offer__card">
+      <img src="plan-2.png" alt="offer" />
+      <div class="offer__details">
+        <span>02</span>
+        <div>
+          <h4>European Explorer Tour</h4>
+          <p>
+            Experience the best of Europe with visits to Paris, Rome, and
+            Amsterdam. Enjoy iconic landmarks, rich culture, and delicious
+            cuisine.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="offer__card">
+      <img src="plan-3.png" alt="offer" />
+      <div class="offer__details">
+        <span>03</span>
+        <div>
+          <h4>Bali Adventure & Wellness</h4>
+          <p>
+            Immerse yourself in Bali’s breathtaking landscapes, yoga retreats,
+            and thrilling activities like surfing and hiking.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="offer__card">
+      <img src="plan-4.png" alt="offer" />
+      <div class="offer__details">
+        <span>04</span>
+        <div>
+          <h4>USA West Coast Road Trip</h4>
+          <p>
+            Hit the road with a scenic journey through Los Angeles, San
+            Francisco, and Las Vegas. Enjoy city life, national parks, and
+            incredible nightlife.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="offer__card">
+      <img src="plan-5.png" alt="offer" />
+      <div class="offer__details">
+        <span>05</span>
+        <div>
+          <h4>Japan Cherry Blossom Tour</h4>
+          <p>
+            Witness the mesmerizing beauty of cherry blossoms in Tokyo and Kyoto
+            while exploring Japan’s fascinating culture and technology.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="offer__card">
+      <img src="plan-6.png" alt="offer" />
+      <div class="offer__details">
+        <span>06</span>
+        <div>
+          <h4>African Safari Experience</h4>
+          <p>
+            Embark on an unforgettable adventure through Kenya and Tanzania,
+            spotting the Big Five and experiencing stunning landscapes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section__container testimony__container" id="testimony">
+  <h2 class="section__header"><span>Hear from Our</span> Happy Travelers</h2>
+  <p class="section__description">
+    Discover Exciting New Opportunities and High-Demand Positions Available Now
+    in Top Industries and Companies
+  </p>
+
+  <div class="testimony__grid">
+    <div class="testimony__card">
+      <div class="testimony__card__header">
+        <img src="testimonial-1.png" alt="testimony" />
+        <div>
+          <h5>Alice Johnson</h5>
+          <h6>USA</h6>
+        </div>
+      </div>
+      <h4>Maldives Getaway</h4>
+      <div class="testimony__card__star">
+        <svg class="premium-stars" viewBox="0 0 120 24">
+          <text x="0" y="20" font-size="16" fill="rgb(255, 215, 0)">★★★★★</text>
+        </svg>
+      </div>
+      <div class="testimonial__card__text">
+        <svg class="quote-icon" width="50" height="50" viewBox="0 0 50 50">
+          <text x="0" y="40" font-size="50" font-weight="bold" fill="#FFD700">
+            “
+          </text>
+        </svg>
+        <p>
+          <span class="quote-text">
+            The Maldives package was a dream come true! Everything was perfectly
+            arranged, from the flights to the overwater villa. Highly
+            recommended!
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="testimony__card">
+      <div class="testimony__card__header">
+        <img src="testimonial-2.png" alt="testimony" />
+        <div>
+          <h5>James Wilson</h5>
+          <h6>United Kingdom</h6>
+        </div>
+      </div>
+      <h4>African Safari</h4>
+      <div class="testimony__card__star">
+        <svg class="premium-stars" viewBox="0 0 120 24">
+          <text x="0" y="20" font-size="16" fill="rgb(255, 215, 0)">★★★★★</text>
+        </svg>
+      </div>
+      <div class="testimonial__card__text">
+        <svg class="quote-icon" width="50" height="50" viewBox="0 0 50 50">
+          <text x="0" y="40" font-size="50" font-weight="bold" fill="#FFD700">
+            “
+          </text>
+        </svg>
+        <p>
+          <span class="quote-text">
+            A bucket-list trip checked! Watching the wildlife up close in Kenya
+            was breathtaking. Everything was well taken care of!
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="testimony__card">
+      <div class="testimony__card__header">
+        <img src="testimonial-3.png" alt="testimony" />
+        <div>
+          <h5>Emily Davis</h5>
+          <h6>Canada</h6>
+        </div>
+      </div>
+      <h4>USA West Coast Road Trip</h4>
+      <div class="testimony__card__star">
+        <svg class="premium-stars" viewBox="0 0 120 24">
+          <text x="0" y="20" font-size="16" fill="rgb(255, 215, 0)">★★★★★</text>
+        </svg>
+      </div>
+      <div class="testimonial__card__text">
+        <svg class="quote-icon" width="50" height="50" viewBox="0 0 50 50">
+          <text x="0" y="40" font-size="50" font-weight="bold" fill="#FFD700">
+            “
+          </text>
+        </svg>
+        <p>
+          <span class="quote-text">
+            Loved the road trip experience! The recommended stops were stunning,
+            and the travel coordination was flawless.
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="testimony__card">
+      <div class="testimony__card__header">
+        <img src="testimonial-4.png" alt="testimony" />
+        <div>
+          <h5>Olivia Thompson</h5>
+          <h6>Australia</h6>
+        </div>
+      </div>
+      <h4>Bali Adventure</h4>
+      <div class="testimony__card__star">
+        <svg class="premium-stars" viewBox="0 0 120 24">
+          <text x="0" y="20" font-size="16" fill="rgb(255, 215, 0)">★★★★★</text>
+        </svg>
+      </div>
+      <div class="testimonial__card__text">
+        <svg class="quote-icon" width="50" height="50" viewBox="0 0 50 50">
+          <text x="0" y="40" font-size="50" font-weight="bold" fill="#FFD700">
+            “
+          </text>
+        </svg>
+        <p>
+          <span class="quote-text">
+            An unforgettable trip! The itinerary was well-planned with a perfect
+            mix of adventure and relaxation. The customer support was fantastic!
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="testimony__card">
+      <div class="testimony__card__header">
+        <img src="testimonial-5.png" alt="testimony" />
+        <div>
+          <h5>Lukas Schmidt</h5>
+          <h6>Germany</h6>
+        </div>
+      </div>
+      <h4>Japan Cherry Blossom Tour</h4>
+      <div class="testimony__card__star">
+        <svg class="premium-stars" viewBox="0 0 120 24">
+          <text x="0" y="20" font-size="16" fill="rgb(255, 215, 0)">★★★★★</text>
+        </svg>
+      </div>
+      <div class="testimonial__card__text">
+        <svg class="quote-icon" width="50" height="50" viewBox="0 0 50 50">
+          <text x="0" y="40" font-size="50" font-weight="bold" fill="#FFD700">
+            “
+          </text>
+        </svg>
+        <p>
+          <span class="quote-text">
+            Seeing the cherry blossoms in Kyoto was magical! The entire trip was
+            well-organized, and the local guides were amazing!
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="testimony__card">
+      <div class="testimony__card__header">
+        <img src="testimonial-6.png" alt="testimony" />
+        <div>
+          <h5>Priya Patel</h5>
+          <h6>India</h6>
+        </div>
+      </div>
+      <h4>European Explorer Tour</h4>
+      <div class="testimony__card__star">
+        <svg class="premium-stars" viewBox="0 0 120 24">
+          <text x="0" y="20" font-size="16" fill="rgb(255, 215, 0)">★★★★★</text>
+        </svg>
+      </div>
+      <div class="testimonial__card__text">
+        <svg class="quote-icon" width="50" height="50" viewBox="0 0 50 50">
+          <text x="0" y="40" font-size="50" font-weight="bold" fill="#FFD700">
+            “
+          </text>
+        </svg>
+        <p>
+          <span class="quote-text">
+            A seamless experience! From Paris to Rome, every detail was taken
+            care of. I had the best time exploring Europe stress-free.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="section__container footer__container">
+    <div class="footer__col">
+      <div class="footer__logo">
+        <a href="#" class="logo">Monster<span>Travel</span></a>
+      </div>
+      <p>
+        Our platform helps you plan the perfect trip and create unforgettable
+        travel experiences.
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Quick Links</h4>
+      <ul class="footer__links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#plan">Plan</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#testimony">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Follow Us</h4>
+      <ul class="footer__links">
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Youtube</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Contact Us</h4>
+      <ul class="footer__links">
+        <li>
+          <a href="#">
+            <span><i class="ri-phone-fill"></i></span> +1 404 567 8789
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span><i class="ri-map-pin-2-fill"></i></span> 123 Main Street,
+            Atlanta, GA, USA
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bar">
+    Copyright © 2025 Girish Mittapalle. All rights reserved.
+  </div>
+</footer>

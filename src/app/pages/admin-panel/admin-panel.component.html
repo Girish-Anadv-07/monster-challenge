@@ -1,0 +1,159 @@
+<section class="table" id="customers_table">
+  <section class="table__header">
+    <h1>Travel Details</h1>
+    <div class="input-group">
+      <input
+        type="search"
+        [(ngModel)]="searchText"
+        placeholder="Search"
+        (input)="filterData()"
+      />
+      <img src="search.png" alt="Search Icon" />
+    </div>
+    <div>
+      <button class="add-new-btn" (click)="navigateToFlightForm()">
+        Add New
+      </button>
+    </div>
+  </section>
+
+  <section class="table__body">
+    <table>
+      <thead>
+        <th (click)="sortTable('id')">
+          <div><span>Id</span></div>
+        </th>
+        <th (click)="sortTable('userName')">
+          <div>
+            <span>Passenger</span>
+            <span class="icon-arrow">
+              <ng-container *ngIf="sortedColumn === 'userName'; else unsorted">
+                {{ sortAscending ? "↑" : "↓" }}
+              </ng-container>
+              <ng-template #unsorted>↕</ng-template>
+            </span>
+          </div>
+        </th>
+        <th (click)="sortTable('airline')">
+          <div>
+            <span>Airline</span>
+            <span class="icon-arrow">
+              <ng-container *ngIf="sortedColumn === 'airline'; else unsorted">
+                {{ sortAscending ? "↑" : "↓" }}
+              </ng-container>
+              <ng-template #unsorted>↕</ng-template>
+            </span>
+          </div>
+        </th>
+        <th (click)="sortTable('flightNumber')">
+          <div>
+            <span>Flight #</span>
+            <span class="icon-arrow">
+              <ng-container
+                *ngIf="sortedColumn === 'flightNumber'; else unsorted"
+              >
+                {{ sortAscending ? "↑" : "↓" }}
+              </ng-container>
+              <ng-template #unsorted>↕</ng-template>
+            </span>
+          </div>
+        </th>
+        <th (click)="sortTable('arrivalDate')">
+          <div>
+            <span>Arrival Date</span>
+            <span class="icon-arrow">
+              <ng-container
+                *ngIf="sortedColumn === 'arrivalDate'; else unsorted"
+              >
+                {{ sortAscending ? "↑" : "↓" }}
+              </ng-container>
+              <ng-template #unsorted>↕</ng-template>
+            </span>
+          </div>
+        </th>
+        <th (click)="sortTable('arrivalTime')">
+          <div>
+            <span>Arrival Time</span>
+            <span class="icon-arrow">
+              <ng-container
+                *ngIf="sortedColumn === 'arrivalTime'; else unsorted"
+              >
+                {{ sortAscending ? "↑" : "↓" }}
+              </ng-container>
+              <ng-template #unsorted>↕</ng-template>
+            </span>
+          </div>
+        </th>
+        <th (click)="sortTable('numOfGuests')">
+          <div>
+            <span>Guests</span>
+            <span class="icon-arrow">
+              <ng-container
+                *ngIf="sortedColumn === 'numOfGuests'; else unsorted"
+              >
+                {{ sortAscending ? "↑" : "↓" }}
+              </ng-container>
+              <ng-template #unsorted>↕</ng-template>
+            </span>
+          </div>
+        </th>
+        <th>
+          <div>
+            <span>Actions</span>
+          </div>
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading">
+          <td colspan="8" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+          </td>
+        </tr>
+
+        <ng-container *ngIf="paginatedFlights.length > 0; else noData">
+          <tr *ngFor="let flight of paginatedFlights; let i = index">
+            <td>{{ getRowNumber(i) }}</td>
+            <td>{{ flight.userName }}</td>
+            <td>{{ flight.airline }}</td>
+            <td>{{ flight.flightNumber }}</td>
+            <td>{{ flight.arrivalDate }}</td>
+            <td>{{ flight.arrivalTime }}</td>
+            <td>{{ flight.numOfGuests }}</td>
+            <td>
+              <button class="icon-button edit-btn" (click)="editFlight(flight)">
+                <i class="ri-pencil-fill"></i>
+              </button>
+              <button
+                class="icon-button delete-btn"
+                (click)="deleteFlight(flight.id)"
+              >
+                <i class="ri-delete-bin-5-fill"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-template #noData>
+          <tr *ngIf="!loading">
+            <td colspan="8" class="no-data-message">
+              Looks like you haven’t planned a vacation yet!<br />
+              Time to book that dream trip!
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Pagination Controls -->
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+</section>
