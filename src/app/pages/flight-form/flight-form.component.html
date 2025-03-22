@@ -234,7 +234,7 @@
       <button
         id="submit"
         type="submit"
-        [disabled]="flightForm.invalid || loading"
+        [disabled]="flightForm.untouched || flightForm.invalid || loading"
       >
         <span *ngIf="!loading">Submit</span>
         <span *ngIf="loading" class="spinner"></span>

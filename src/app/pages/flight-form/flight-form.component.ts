@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Observable, Subscription, take } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -67,7 +67,7 @@ export class FlightFormComponent implements OnInit {
   minDate: Date;
   flightId: string | null = null;
 
-  loading = false;
+  loading: boolean | null = null;
   showLogoutModal = false;
 
   ngOnInit(): void {
@@ -171,6 +171,7 @@ export class FlightFormComponent implements OnInit {
     private http: HttpClient,
     private firestoreService: FirestoreService,
     private route: ActivatedRoute,
+    private router: Router,
     private dataService: DataService
   ) {
     this.minDate = new Date();
@@ -207,7 +208,7 @@ export class FlightFormComponent implements OnInit {
           this.flightForm.get('airline')?.setValue('');
         }
       });
-    }, 100);
+    }, 150);
   }
 
   onFlightNumberBlur() {
@@ -224,7 +225,7 @@ export class FlightFormComponent implements OnInit {
             this.flightForm.get('flightNumber')?.setValue('');
           }
         });
-    }, 100);
+    }, 400);
   }
 
   onTimezoneBlur() {
@@ -236,7 +237,7 @@ export class FlightFormComponent implements OnInit {
           this.flightForm.get('timezone')?.setValue('');
         }
       });
-    }, 100);
+    }, 150);
   }
 
   initializeListeners(): void {
@@ -437,10 +438,10 @@ export class FlightFormComponent implements OnInit {
           (error.error?.message || error.message);
       },
       complete: () => {
-        this.loading = false;
         setTimeout(() => {
-          this.successMessage = '';
-        }, 1000);
+          this.loading = false;
+        }, 100);
+        this.router.navigate(['/travels']);
       },
     });
   }
@@ -496,7 +497,6 @@ function futureDateValidator(timeZone: string): ValidatorFn {
     const today = new Date()
       .toLocaleString('en-CA', { timeZone })
       .split(',')[0];
-
     return selectedDate >= today ? null : { futureDate: true };
   };
 }
@@ -526,7 +526,7 @@ function futureTimeValidator(arrivalDate: Date, timeZone: string): ValidatorFn {
       .toLocaleTimeString('en-GB', { timeZone, hour12: false })
       .slice(0, 5);
 
-    return control.value > nowTime ? null : { futureTime: true };
+    return timeString > nowTime ? null : { futureTime: true };
   };
 }
 
@@ -548,13 +548,14 @@ function getDateObjectInTimezone(iana: string | undefined): Date {
   const get = (type: string) => parts.find((p) => p.type === type)?.value;
 
   const year = Number(get('year'));
-  const month = Number(get('month'));
+  const month = Number(get('month')) - 1;
   const day = Number(get('day'));
   const hour = Number(get('hour'));
   const minute = Number(get('minute'));
   const second = Number(get('second'));
+  const date = new Date(year, month, day, hour, minute, second);
 
-  return new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+  return date;
 }
 
 function createLocalDateTime(dateStr: string, timeStr: string): Date {

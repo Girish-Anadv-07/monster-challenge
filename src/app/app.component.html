@@ -19,9 +19,12 @@
 
   <div class="nav__btns" *ngIf="isLoggedIn !== null">
     <!-- Show Sign Up if user is not logged in -->
-    <button *ngIf="!isLoggedIn" class="btn sign__up" (click)="toggleLogin()">
-      Sign Up
-    </button>
+
+    <a href="#home" style="color: white">
+      <button *ngIf="!isLoggedIn" class="btn sign__up" (click)="toggleLogin()">
+        Sign Up
+      </button>
+    </a>
 
     <!-- Show User Profile Icon with Dropdown Menu when logged in -->
     <div

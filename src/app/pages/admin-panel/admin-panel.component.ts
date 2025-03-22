@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import ScrollReveal from 'scrollreveal';
 import {
   Firestore,
   collection,
@@ -41,6 +42,15 @@ export class AdminPanelComponent implements OnInit {
     this.uid = await this.authService.getUserUID();
 
     this.fetchFlights();
+  }
+
+  ngAfterViewInit(): void {
+    ScrollReveal().reveal('.table__header, .pagination', {
+      duration: 1000,
+      opacity: 0,
+      scale: 0.5,
+      easing: 'ease-in-out',
+    });
   }
 
   fetchFlights() {
